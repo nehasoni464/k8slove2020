@@ -1,0 +1,19 @@
+###create q7.yaml
+vim q7.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    adhoc: nehasoniq7
+  name: adhocpod7
+spec:
+  containers:
+  - image: alpine
+    name: adhocpod7
+    command: ["/bin","-c","while true; do date>>/mnt/d.txt; sleep 3; done"]
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}
+### create podfile
+kubectl create -f q7.yaml
