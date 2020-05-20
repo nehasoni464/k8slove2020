@@ -1,0 +1,37 @@
+######creating yaml file name: q2.yaml
+vim q2.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    adhoc: nehasoniq2
+  name: adhocpod1
+spec:
+  containers:
+  - image: nginx
+    name: adhocpod1
+    ports:
+    - containerPort: 80
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}
+##### pod creating
+kubectl create -f q2.yaml
+##### sevice name :: q2srvnehasoni.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: q2svcnehasoni
+spec:
+  type: NodePort
+  selector:
+    adhoc: nehasoniq2
+  ports:
+    - port: 80
+      targetPort: 80
+### creating service 
+kubectl create -f q2svcnehasoni.yaml
+-----done------
+
